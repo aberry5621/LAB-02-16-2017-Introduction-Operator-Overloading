@@ -26,24 +26,28 @@
 
 #include <iostream>
 
-class IntItem
-{
+class IntItem {
 public:
-    IntItem(int p_num = 1);
-    
+    IntItem(int p_num = 0);
     void operator+= (const IntItem& rhs);
+    void operator-= (const IntItem& rhs);
+    void operator*= (const IntItem& rhs);
+    void operator/= (const IntItem& rhs);
     IntItem operator++();
     IntItem operator++(int p_dummy); //postfix, or post-increment
-    
+    IntItem operator--();
+    IntItem operator--(int p_dummy); //postfix, or post-decrement
     //friends: streams
     friend std::ostream& operator<<(std::ostream& out, const IntItem& printMe);
     friend std::istream& operator >> (std::istream& in, IntItem& readMe);
-    
     //Comparison operators
     friend bool operator<(const IntItem& lhs, const IntItem& rhs);
-    
+    friend bool operator<=(const IntItem& lhs, const IntItem& rhs);
     //Arithmetic operators
     friend IntItem operator+(const IntItem &lhs, const IntItem& rhs);
+    friend IntItem operator-(const IntItem &lhs, const IntItem& rhs);
+    friend IntItem operator*(const IntItem &lhs, const IntItem& rhs);
+    friend IntItem operator/(const IntItem &lhs, const IntItem& rhs);
 private:
     int m_intNum;
 };
